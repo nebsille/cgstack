@@ -1,0 +1,75 @@
+A Game has Players
+
+Players are on teams
+
+The DSL should be able to define arbitrary properties for players
+    These may either be classes of cards
+    or numeric values (points, life, etc)
+
+A game has rules
+
+Players may have a hand, a personal deck, a personal discard pile,
+    cards in front of them
+
+A game may have a global deck, a global discard pile, a global removed
+    from game zone
+
+Rules define various Actions players can perform and the Conditions
+    under which those Actions are valid.
+    These conditions can define both things
+    that must be true for an action to be valid and things that
+    prohibit an action from being valid.
+
+Rules define conditions how the game can be lost or won
+
+Rules have an associated deck
+
+A deck has an ordered list of cards
+Decks can be face up or face down.
+
+Are all groups of cards decks? Only some? 
+    Some decks can be drawn from
+
+Rules define the sequence of play
+    There are potentially Turns.
+    and/or
+    the ability to respond to events 
+        (think Bang's Indiani or MTG's stack  "in response...")
+            In Bang, cards can force responses from one person or everyone,
+            which is relatively simple. It would be a bit harder to think
+            of a good interface for a game like MTG where a player _can_
+            respond to almost anything but doesn't _need_ to respond to most
+            things. I suppose "Enter to ack each action" wouldn't be too
+            tiresome
+
+Playing a card requires some Action and has some Effect
+        (discarding the card, tapping X lands, using 3 coin)
+    it's not clear to me if this belongs in the rules or as part
+    of the definition of the cards. It seems like it would be useful
+    to be able to describe a deck 52 cards once, and only change the
+    rules to switch from Hearts to Go Fish
+
+Turns have Phases
+
+Drawing moves cards between Locations
+    can be an affect of a card (wells fargo) 
+        or a routine part of a turn (topdecking)
+    has an amount (1 card, 2 cards)
+    has a source (player's deck, global deck, discard pile)
+    has a destination (player's hand)
+
+
+Card:
+    Name
+    TextRepresenation
+    GraphicalRepresentation
+    Class (Suit/color/type (money/action/victory pt))
+    Affect (May belong in Rules)
+    location: (Player's) deck | (Player's) hand | (Player's) discard
+                | inFrontOfPlayer | Being played
+        These locations make affect a card's Visibility (who can see it)
+    Cost: (2CRG in magic, or 3 coin in dominion)
+        Should this be part of the card, or part of the rules around
+        playing the card?
+
+Shuffling is an action (source deck, target deck, locationToPlace)        
